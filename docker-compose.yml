@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-webapp_development}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build:
+      context: .
+      args:
+        PASSENGER_RUBY_VERSION: ${PASSENGER_RUBY_VERSION}
+        USER_ID: ${USER_ID:-1000}
+        ENV_ARG: ${ENV_ARG}
+    ports:
+      - "80:80"
+    volumes:
+      - .:/home/app/webapp
+    depends_on:
+      - db
+    environment:
+      RAILS_ENV: development
+      DATABASE_HOST: db
+      DATABASE_PORT: "5432"
+      DATABASE_USERNAME: ${POSTGRES_USER:-postgres}
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      DATABASE_NAME: ${POSTGRES_DB:-webapp_development}
+
+volumes:
+  postgres_data:
