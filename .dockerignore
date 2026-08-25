@@ -20,6 +20,9 @@
 !/log/.keep
 !/tmp/.keep
 
+# Ignore RSpec example status file.
+/spec/examples.txt
+
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*
 !/tmp/pids/.keep
