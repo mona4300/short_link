@@ -28,4 +28,18 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  url_validator:
+    errors:
+      blank: "URL is required"
+      too_long: "URL is too long"
+      invalid: "URL is invalid"
+      invalid_scheme: "URL scheme must be http or https"
+      userinfo: "URLs with embedded credentials are not allowed"
+      invalid_host: "URL host is invalid"
+      idn_host: "Internationalized domain names are not allowed"
+      localhost: "Localhost URLs are not allowed"
+      ip_address: "IP address URLs are not allowed"
+      internal_host: "Internal hostnames are not allowed"
+      custom_port: "Custom ports are not allowed"
+      private_address: "Private or reserved network addresses are not allowed"
+      unresolvable_host: "URL host could not be resolved"
